@@ -5,11 +5,14 @@ import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 import happy from "./assets/emotion1.png";
+import MyHeader from "./components/MyHeader";
+import MyButton from "./components/MyButton";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <MyHeader headText={"App"} leftChild={<MyButton text={"왼쪽버튼"} />} />
         <h2>App.js</h2>
         <img src={happy} />
         <Routes>
