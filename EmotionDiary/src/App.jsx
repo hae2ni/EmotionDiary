@@ -4,16 +4,21 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
+import happy from "./assets/emotion1.png";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/new" element={<New />} />
-        <Route path="/edit" element={<Edit />} />
-        <Route path="/diary/:id" element={<Diary />} />
-      </Routes>
+      <div className="App">
+        <h2>App.js</h2>
+        <img src={happy} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<New />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/diary/:id" element={<Diary />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
