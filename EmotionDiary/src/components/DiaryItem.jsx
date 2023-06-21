@@ -5,6 +5,7 @@ import emotion2 from "../assets/emotion2.png";
 import emotion3 from "../assets/emotion3.png";
 import emotion4 from "../assets/emotion4.png";
 import emotion5 from "../assets/emotion5.png";
+import MyButton from "./MyButton";
 
 const EMOTION_LIST = [
   { emo: 1, img: emotion1 },
@@ -20,6 +21,8 @@ const DiaryItem = ({ id, emotion, content, date }) => {
     return emotionImg[0].img;
   };
 
+  const strDate = new Date(parseInt(date)).toLocaleDateString();
+
   return (
     <div className="DiaryItem">
       <div
@@ -28,8 +31,14 @@ const DiaryItem = ({ id, emotion, content, date }) => {
           `emotion_img_wrapper_${emotion}`,
         ].join(" ")}
       >
-        <div></div>
         <img src={emotionSelect()} />
+      </div>
+      <div className="info_wrapper">
+        <div className="diary_date">{strDate}</div>
+        <div className="diary_content_preview">{content.slice(0, 25)}</div>
+      </div>
+      <div className="btn_wrapper">
+        <MyButton text={"수정하기"} />
       </div>
     </div>
   );
