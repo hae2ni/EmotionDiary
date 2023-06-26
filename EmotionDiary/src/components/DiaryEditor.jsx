@@ -4,43 +4,12 @@ import { useNavigate } from "react-router-dom";
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 
-import emotion1 from "../assets/emotion1.png";
-import emotion2 from "../assets/emotion2.png";
-import emotion3 from "../assets/emotion3.png";
-import emotion4 from "../assets/emotion4.png";
-import emotion5 from "../assets/emotion5.png";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "./../App";
 
 import { getStringDate } from "../util/date";
 
-const emotionList = [
-  {
-    emotion_id: 1,
-    emotion_img: emotion1,
-    emotion_descript: "완전 좋음",
-  },
-  {
-    emotion_id: 2,
-    emotion_img: emotion2,
-    emotion_descript: "좋음",
-  },
-  {
-    emotion_id: 3,
-    emotion_img: emotion3,
-    emotion_descript: "보통",
-  },
-  {
-    emotion_id: 4,
-    emotion_img: emotion4,
-    emotion_descript: "별로",
-  },
-  {
-    emotion_id: 5,
-    emotion_img: emotion5,
-    emotion_descript: "완전 별로",
-  },
-];
+import { emotionList } from "../util/emotion";
 
 const DiaryEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
@@ -50,7 +19,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
-  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
   const handleSubmit = () => {
     if (content.length < 1) {
@@ -69,6 +38,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
       }
     }
     navigate("/", { replace: true });
+  };
+
+  const handleDelete = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onRemove(originData.id);
+      navigate("/", { replace: true });
+    }
   };
 
   useEffect(() => {
@@ -90,6 +66,15 @@ const DiaryEditor = ({ isEdit, originData }) => {
         headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
         leftChild={
           <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
+        }
+        rightChild={
+          isEdit && (
+            <MyButton
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleDelete}
+            />
+          )
         }
       />
 
