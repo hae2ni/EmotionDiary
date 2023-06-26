@@ -15,7 +15,8 @@ const filterOptionList = [
   { value: "bad", name: "안 좋은 감정" },
 ];
 
-const ControlMenu = ({ value, onChange, optionList }) => {
+// eslint-disable-next-line react/display-name
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
     <select
       className="ControlMenu"
@@ -29,11 +30,11 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();
-  const [sortType, setSortType] = useState("lastest");
+  const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
 
   const getProcessedDiaryList = () => {
