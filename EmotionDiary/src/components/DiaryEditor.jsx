@@ -1,4 +1,10 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 import MyHeader from "./MyHeader";
@@ -55,10 +61,10 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
   }, [isEdit, originData]);
 
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
     console.log(emotion);
-  };
+  }, []);
 
   return (
     <div className="DiaryEditor">
